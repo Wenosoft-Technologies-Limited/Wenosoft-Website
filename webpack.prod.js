@@ -80,8 +80,13 @@ module.exports = merge(common, {
     },
   },
   performance: {
+    // The asset/entrypoint budget exists to police *code* bundles.
+    // Brand images are intentional and governed by other tools (Lighthouse,
+    // Netlify Image CDN). Exclude them from the budget so the warning stays
+    // signal, not noise.
     maxAssetSize: 500 * 1024,
     maxEntrypointSize: 500 * 1024,
     hints: "warning",
+    assetFilter: (assetFilename) => /\.(?:js|css)$/.test(assetFilename),
   },
 });

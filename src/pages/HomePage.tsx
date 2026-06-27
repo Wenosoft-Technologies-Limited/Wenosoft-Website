@@ -148,7 +148,10 @@ function CapabilitiesGrid() {
 function PhilosophyPanel() {
   return (
     <section className="relative overflow-hidden bg-wenosoft-purple py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30"
+      />
       <div
         aria-hidden
         className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-electric-violet/40 blur-3xl"

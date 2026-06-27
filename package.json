@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "description": "Wenosoft Technologies — marketing site (React + TypeScript + Webpack 5)",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -15,7 +17,11 @@
     "node": ">=18.18"
   },
   "browserslist": {
-    "production": [">0.5%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 2 chrome version",
       "last 2 firefox version",

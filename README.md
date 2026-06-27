@@ -65,7 +65,7 @@ A pure React + TypeScript single-page application, bundled by Webpack 5, styled 
 ├── package.json
 ├── postcss.config.js           # PostCSS plugins (Tailwind v4)
 ├── tsconfig.json               # Strict TypeScript config
-├── eslint.config.js            # Flat ESLint 9 config
+├── eslint.config.mjs           # Flat ESLint 9 config (ESM)
 ├── webpack.common.js           # Shared webpack config
 ├── webpack.dev.js              # Dev-mode overrides (HMR, source maps, dev server)
 ├── webpack.prod.js             # Prod overrides (minify, split chunks, hashing)
@@ -153,13 +153,13 @@ Hot Module Replacement is enabled — edits to any `.tsx` file update the runnin
 
 ## npm scripts
 
-| Script               | What it does                                                              |
-| -------------------- | ------------------------------------------------------------------------- |
-| `npm run dev`        | Starts webpack-dev-server on port 3000 with HMR + React Refresh.          |
-| `npm run build`      | Produces an optimized production bundle in `dist/`.                       |
-| `npm run type-check` | Runs `tsc --noEmit` — type-checks the entire project without bundling.    |
-| `npm run lint`       | Runs ESLint over `src/**/*.{ts,tsx}` using the flat config.               |
-| `npm run format`     | Runs Prettier on the repo and writes changes in place.                    |
+| Script               | What it does                                                           |
+| -------------------- | ---------------------------------------------------------------------- |
+| `npm run dev`        | Starts webpack-dev-server on port 3000 with HMR + React Refresh.       |
+| `npm run build`      | Produces an optimized production bundle in `dist/`.                    |
+| `npm run type-check` | Runs `tsc --noEmit` — type-checks the entire project without bundling. |
+| `npm run lint`       | Runs ESLint over `src/**/*.{ts,tsx}` using the flat config.            |
+| `npm run format`     | Runs Prettier on the repo and writes changes in place.                 |
 
 Run `npm run type-check && npm run lint && npm run build` before pushing to be sure CI will be green.
 
@@ -207,8 +207,8 @@ The custom [Seo](src/components/seo/Seo.tsx) component is a `useEffect`-based do
   title="Services — Wenosoft Technologies"
   description="..."
   path="/services"
-  ogImage={someAssetImport}   // optional — absolute URL or root-relative path
-  noIndex                     // optional — disables indexing for 404 etc.
+  ogImage={someAssetImport} // optional — absolute URL or root-relative path
+  noIndex // optional — disables indexing for 404 etc.
 />
 ```
 
@@ -372,12 +372,12 @@ There is **no** `.swcrc`. SWC options are passed inline through `swc-loader` in 
 
 Pick the right folder:
 
-| Folder                          | Use for                                                              |
-| ------------------------------- | -------------------------------------------------------------------- |
-| `src/components/layout/`        | Structural components (Header, Footer, Section, layout shells).      |
-| `src/components/ui-brand/`      | Branded primitives (buttons, links, cards).                          |
-| `src/components/brand/`         | Logo, wordmark, marketing-specific brand pieces.                     |
-| `src/components/seo/`           | Anything that writes to `<head>`.                                    |
+| Folder                     | Use for                                                         |
+| -------------------------- | --------------------------------------------------------------- |
+| `src/components/layout/`   | Structural components (Header, Footer, Section, layout shells). |
+| `src/components/ui-brand/` | Branded primitives (buttons, links, cards).                     |
+| `src/components/brand/`    | Logo, wordmark, marketing-specific brand pieces.                |
+| `src/components/seo/`      | Anything that writes to `<head>`.                               |
 
 Component conventions:
 
@@ -431,7 +431,7 @@ If you have a deliberately unused parameter, prefix with `_` (e.g. `_event`) —
 
 ## Linting & formatting
 
-- **ESLint 9 flat config** in [eslint.config.js](eslint.config.js): `@eslint/js` recommended + `typescript-eslint` recommended + `react`, `react-hooks`, `react-refresh` plugins + Prettier integration.
+- **ESLint 9 flat config** in [eslint.config.mjs](eslint.config.mjs): `@eslint/js` recommended + `typescript-eslint` recommended + `react`, `react-hooks`, `react-refresh` plugins + Prettier integration.
 - **Prettier** is wired through `eslint-plugin-prettier` so a single `npm run lint` reports both code-quality and formatting issues.
 
 The rules of thumb:
@@ -451,14 +451,14 @@ Push the repo to GitHub (or GitLab/Bitbucket), then in Netlify:
 
 What [netlify.toml](netlify.toml) does:
 
-| Block                                | Effect                                                                                   |
-| ------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `[build]`                            | Runs `npm run build`, serves `dist/`.                                                    |
-| `[build.environment]`                | Pins `NODE_VERSION = "20"` so Netlify matches `.nvmrc`.                                  |
-| `[[redirects]] /* → /index.html 200` | SPA fallback — direct visits to `/about` etc. don't 404.                                 |
-| `[[headers]] /assets/*`              | `Cache-Control: public, max-age=31536000, immutable` — hashed files cached forever.      |
-| `[[headers]] /index.html` & `/`      | `Cache-Control: public, max-age=0, must-revalidate` — users always get the latest deploy.|
-| `[[headers]] /*`                     | Security: `X-Frame-Options DENY`, `X-Content-Type-Options nosniff`, HSTS, etc.           |
+| Block                                | Effect                                                                                    |
+| ------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `[build]`                            | Runs `npm run build`, serves `dist/`.                                                     |
+| `[build.environment]`                | Pins `NODE_VERSION = "20"` so Netlify matches `.nvmrc`.                                   |
+| `[[redirects]] /* → /index.html 200` | SPA fallback — direct visits to `/about` etc. don't 404.                                  |
+| `[[headers]] /assets/*`              | `Cache-Control: public, max-age=31536000, immutable` — hashed files cached forever.       |
+| `[[headers]] /index.html` & `/`      | `Cache-Control: public, max-age=0, must-revalidate` — users always get the latest deploy. |
+| `[[headers]] /*`                     | Security: `X-Frame-Options DENY`, `X-Content-Type-Options nosniff`, HSTS, etc.            |
 
 After deploy, in Netlify dashboard:
 

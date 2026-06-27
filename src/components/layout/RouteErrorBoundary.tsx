@@ -9,8 +9,7 @@ export function RouteErrorBoundary() {
     return <NotFoundCard />;
   }
 
-  // Log non-404 errors so they're visible in production tooling
-  // eslint-disable-next-line no-console
+  // Log non-404 errors so they're visible in production tooling.
   console.error(error);
 
   return (

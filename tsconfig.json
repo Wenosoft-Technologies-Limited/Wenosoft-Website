@@ -23,7 +23,6 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
 
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },

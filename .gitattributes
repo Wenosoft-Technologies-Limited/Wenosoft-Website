@@ -1,0 +1,19 @@
+# Normalize all text files to LF in the repo so Windows checkouts
+# don't introduce CRLF that Prettier then complains about.
+* text=auto eol=lf
+
+# Keep PowerShell scripts as CRLF if any are added later.
+*.ps1 text eol=crlf
+
+# Treat these as binary so Git never mangles them.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
