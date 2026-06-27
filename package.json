@@ -1,0 +1,68 @@
+{
+  "name": "wenosoft-clarity",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Wenosoft Technologies — marketing site (React + TypeScript + Webpack 5)",
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "browserslist": {
+    "production": [">0.5%", "not dead", "not op_mini all"],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version",
+      "last 2 edge version"
+    ]
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "@swc/core": "^1.10.7",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^22.16.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "globals": "^15.15.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "postcss": "^8.5.1",
+    "postcss-loader": "^8.1.1",
+    "prettier": "^3.7.3",
+    "react-refresh": "^0.14.2",
+    "style-loader": "^4.0.0",
+    "swc-loader": "^0.2.6",
+    "tailwindcss": "^4.2.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "tw-animate-css": "^1.3.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.56.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "webpack-merge": "^6.0.1"
+  }
+}
