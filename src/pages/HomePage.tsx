@@ -6,11 +6,28 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { Section } from "@/components/layout/Section";
 import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
-import { CONTACT, SITE } from "@/config/site";
+import { CONTACT, SITE, SOCIAL } from "@/config/site";
 
 const TITLE = `${SITE.name} | Clarity out of complexity`;
 const DESCRIPTION =
   "Software development and technology consulting. Wenosoft bridges the ability to think with the ability to build, delivering clarity out of complexity.";
+
+const ORGANIZATION_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.legalName,
+  alternateName: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/wenosoft-icon-purple.png`,
+  description: SITE.description,
+  email: CONTACT.email,
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Lagos State",
+    addressCountry: "NG",
+  },
+  sameAs: SOCIAL.map((profile) => profile.url),
+};
 
 const CAPABILITIES = [
   {
@@ -34,7 +51,13 @@ const CAPABILITIES = [
 export function HomePage() {
   return (
     <>
-      <Seo title={TITLE} description={DESCRIPTION} path="/" ogImage={logoReveal} />
+      <Seo
+        title={TITLE}
+        description={DESCRIPTION}
+        path="/"
+        ogImage={logoReveal}
+        jsonLd={ORGANIZATION_JSONLD}
+      />
       <Hero />
       <TrustStrip />
       <CapabilitiesGrid />

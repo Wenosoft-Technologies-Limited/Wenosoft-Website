@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { SITE } from "@/config/site";
+import { SITE, TWITTER_HANDLE } from "@/config/site";
 
 interface SeoProps {
   /** Full page title — used verbatim as <title> and og:title */
@@ -15,6 +15,8 @@ interface SeoProps {
   type?: "website" | "article" | "profile";
   /** Block indexing for this route (e.g. 404) */
   noIndex?: boolean;
+  /** Structured data rendered as application/ld+json. One object or several. */
+  jsonLd?: object | object[];
 }
 
 // Marker attribute so we only ever touch tags this component owns.
@@ -53,6 +55,22 @@ function upsertCanonical(href: string): void {
   el.href = href;
 }
 
+function upsertJsonLd(json: string): void {
+  const selector = `script[type="application/ld+json"][${MARK}]`;
+  let el = document.head.querySelector<HTMLScriptElement>(selector);
+  if (!el) {
+    el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.setAttribute(MARK, "");
+    document.head.appendChild(el);
+  }
+  el.textContent = json;
+}
+
+function removeJsonLd(): void {
+  document.head.querySelector(`script[type="application/ld+json"][${MARK}]`)?.remove();
+}
+
 /**
  * Per-route document head management for a client-rendered SPA.
  *
@@ -67,10 +85,14 @@ export function Seo({
   ogImage,
   type = "website",
   noIndex = false,
+  jsonLd,
 }: SeoProps): null {
+  // Serialize for a stable effect dependency regardless of object identity.
+  const jsonLdString = jsonLd ? JSON.stringify(jsonLd) : undefined;
+
   useEffect(() => {
     const url = ensureAbsolute(path);
-    const image = ogImage ? ensureAbsolute(ogImage) : undefined;
+    const image = ensureAbsolute(ogImage ?? "/og-image.png");
 
     document.title = title;
 
@@ -87,19 +109,20 @@ export function Seo({
     upsertMeta("og:url", "property", url);
     upsertMeta("og:title", "property", title);
     upsertMeta("og:description", "property", description);
+    upsertMeta("og:image", "property", image);
 
     upsertMeta("twitter:card", "name", "summary_large_image");
+    upsertMeta("twitter:site", "name", TWITTER_HANDLE);
     upsertMeta("twitter:title", "name", title);
     upsertMeta("twitter:description", "name", description);
+    upsertMeta("twitter:image", "name", image);
 
-    if (image) {
-      upsertMeta("og:image", "property", image);
-      upsertMeta("twitter:image", "name", image);
+    if (jsonLdString) {
+      upsertJsonLd(jsonLdString);
     } else {
-      removeMeta("og:image", "property");
-      removeMeta("twitter:image", "name");
+      removeJsonLd();
     }
-  }, [title, description, path, ogImage, type, noIndex]);
+  }, [title, description, path, ogImage, type, noIndex, jsonLdString]);
 
   return null;
 }

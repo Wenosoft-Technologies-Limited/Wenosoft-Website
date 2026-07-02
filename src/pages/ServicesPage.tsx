@@ -60,10 +60,29 @@ const PROCESS = [
   { step: "Operate", body: "We stay through launch, scale and the boring bits that matter." },
 ];
 
+const SERVICES_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: SERVICES.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      name: service.title,
+      description: service.body,
+      provider: {
+        "@type": "Organization",
+        name: SITE.legalName,
+        url: SITE.url,
+      },
+    },
+  })),
+};
+
 export function ServicesPage() {
   return (
     <>
-      <Seo title={TITLE} description={DESCRIPTION} path="/services" />
+      <Seo title={TITLE} description={DESCRIPTION} path="/services" jsonLd={SERVICES_JSONLD} />
 
       <section className="relative overflow-hidden border-b border-border/60">
         <div aria-hidden className="pointer-events-none absolute inset-0">
