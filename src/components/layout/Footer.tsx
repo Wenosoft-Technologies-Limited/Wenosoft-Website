@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CONTACT } from "@/config/site";
 
 import { LogoLockup } from "../brand/LogoLockup";
+import { SocialLinks } from "../ui-brand/SocialLinks";
 
 export function Footer() {
   return (
@@ -58,7 +59,10 @@ export function Footer() {
                 {CONTACT.website}
               </a>
             </li>
+            <li className="text-foreground/90">{CONTACT.location}</li>
           </ul>
+          <p className="mt-8 text-caption text-soft-lavender">Follow</p>
+          <SocialLinks className="mt-4" />
         </div>
       </div>
 

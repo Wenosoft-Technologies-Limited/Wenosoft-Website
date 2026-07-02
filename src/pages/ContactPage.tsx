@@ -1,6 +1,7 @@
 import banner from "@/assets/wenosoft-banner.png";
 import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
+import { SocialLinks } from "@/components/ui-brand/SocialLinks";
 import { CONTACT, SITE } from "@/config/site";
 
 const TITLE = `Contact | ${SITE.name}`;
@@ -42,14 +43,15 @@ export function ContactPage() {
                 value={CONTACT.email}
                 href={`mailto:${CONTACT.email}`}
               />
-              <ContactCard
-                label="Website"
-                value={CONTACT.website}
-                href={`https://${CONTACT.website}`}
-              />
+              <ContactCard label="Office" value={CONTACT.location} />
               <ContactCard label="Founder & CEO" value={CONTACT.founder} />
               <ContactCard label="Response time" value="Within 1 business day" />
             </dl>
+
+            <div className="mt-10">
+              <p className="text-caption text-soft-lavender">Connect with us</p>
+              <SocialLinks className="mt-4" iconClassName="h-6 w-6" />
+            </div>
           </div>
 
           <div className="relative">
