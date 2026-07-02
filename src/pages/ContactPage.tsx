@@ -1,4 +1,5 @@
 import banner from "@/assets/wenosoft-banner.png";
+import founderImage from "@/assets/wenosoft-founder.jpeg";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { scaleIn } from "@/components/motion/variants";
@@ -57,7 +58,7 @@ export function ContactPage() {
                 <ContactCard label="Office" value={CONTACT.location} />
               </StaggerItem>
               <StaggerItem interactive>
-                <ContactCard label="Founder & CEO" value={CONTACT.founder} />
+                <ContactCard label="Founder & CEO" value={CONTACT.founder} imageSrc={founderImage} />
               </StaggerItem>
               <StaggerItem interactive>
                 <ContactCard label="Response time" value="Within 1 business day" />
@@ -92,11 +93,36 @@ export function ContactPage() {
   );
 }
 
-function ContactCard({ label, value, href }: { label: string; value: string; href?: string }) {
+function ContactCard({
+  label,
+  value,
+  href,
+  imageSrc,
+}: {
+  label: string;
+  value: string;
+  href?: string;
+  imageSrc?: string;
+}) {
   const content = (
     <>
       <dt className="text-caption text-muted-foreground">{label}</dt>
-      <dd className="mt-2 font-display text-lg text-foreground">{value}</dd>
+      {imageSrc ? (
+        <dd className="mt-3 flex items-center gap-3">
+          <img
+            src={imageSrc}
+            alt={`${value}, ${label} at Wenosoft Technologies`}
+            className="h-12 w-12 rounded-full border border-soft-lavender/40 object-cover"
+            loading="lazy"
+            decoding="async"
+            width={96}
+            height={96}
+          />
+          <span className="font-display text-lg text-foreground">{value}</span>
+        </dd>
+      ) : (
+        <dd className="mt-2 font-display text-lg text-foreground">{value}</dd>
+      )}
     </>
   );
   return (

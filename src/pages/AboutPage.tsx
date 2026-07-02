@@ -1,4 +1,5 @@
 import brandStory from "@/assets/wenosoft-brand-story.png";
+import founderImage from "@/assets/wenosoft-founder.jpeg";
 import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
@@ -113,18 +114,35 @@ export function AboutPage() {
         </Stagger>
       </Section>
 
-      <Section eyebrow="Leadership" align="center">
-        <Reveal variants={scaleIn} className="mx-auto max-w-2xl text-center">
-          <p className="font-display text-3xl text-foreground sm:text-4xl">{CONTACT.founder}</p>
-          <p className="mt-2 text-caption text-muted-foreground">Founder &amp; CEO</p>
-          <p className="mt-6 text-muted-foreground">
-            Leading a team that pairs engineering depth with strategic clarity across software, AI,
-            cloud, and enterprise systems.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <CTALink href={CONTACT.mailto} variant="primary" size="lg">
-              Work with us
-            </CTALink>
+      <Section eyebrow="Leadership">
+        <Reveal variants={scaleIn} className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-center">
+          <div className="relative mx-auto w-full max-w-sm">
+            <div aria-hidden className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-electric-violet/35 via-wenosoft-purple/25 to-transparent blur-2xl" />
+            <figure className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
+              <img
+                src={founderImage}
+                alt="Portrait of Henry Ozomgbachi, Founder and CEO of Wenosoft Technologies"
+                className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+                width={1080}
+                height={1350}
+              />
+            </figure>
+          </div>
+
+          <div className="text-center md:text-left">
+            <p className="font-display text-3xl text-foreground sm:text-4xl">{CONTACT.founder}</p>
+            <p className="mt-2 text-caption text-muted-foreground">Founder &amp; CEO</p>
+            <p className="mt-6 max-w-xl text-muted-foreground">
+              Leading a team that pairs engineering depth with strategic clarity across software,
+              AI, cloud, and enterprise systems.
+            </p>
+            <div className="mt-10 flex justify-center md:justify-start">
+              <CTALink href={CONTACT.mailto} variant="primary" size="lg">
+                Work with us
+              </CTALink>
+            </div>
           </div>
         </Reveal>
       </Section>
