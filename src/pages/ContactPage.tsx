@@ -62,8 +62,8 @@ export function ContactPage() {
                 className="h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
-                width={1400}
-                height={900}
+                width={1080}
+                height={1350}
               />
             </div>
             <p className="mt-4 text-center text-xs uppercase tracking-[0.18em] text-muted-foreground">

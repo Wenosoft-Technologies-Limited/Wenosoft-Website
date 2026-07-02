@@ -113,8 +113,8 @@ function Hero() {
               className="relative h-full w-full rounded-[2rem] object-cover"
               loading="eager"
               decoding="async"
-              width={1200}
-              height={1200}
+              width={1080}
+              height={1350}
               fetchPriority="high"
             />
           </div>

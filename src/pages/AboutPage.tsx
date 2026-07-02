@@ -53,8 +53,8 @@ export function AboutPage() {
               className="h-full w-full object-cover"
               loading="lazy"
               decoding="async"
-              width={1200}
-              height={700}
+              width={1080}
+              height={1350}
             />
           </div>
           <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
