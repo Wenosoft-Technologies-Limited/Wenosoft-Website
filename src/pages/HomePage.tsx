@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import iconShowcase from "@/assets/wenosoft-icon-showcase.png";
-import logoReveal from "@/assets/wenosoft-logo-reveal.png";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Section } from "@/components/layout/Section";
 import { Seo } from "@/components/seo/Seo";
@@ -51,13 +50,7 @@ const CAPABILITIES = [
 export function HomePage() {
   return (
     <>
-      <Seo
-        title={TITLE}
-        description={DESCRIPTION}
-        path="/"
-        ogImage={logoReveal}
-        jsonLd={ORGANIZATION_JSONLD}
-      />
+      <Seo title={TITLE} description={DESCRIPTION} path="/" jsonLd={ORGANIZATION_JSONLD} />
       <Hero />
       <TrustStrip />
       <CapabilitiesGrid />

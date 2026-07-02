@@ -22,6 +22,32 @@ interface SeoProps {
 // Marker attribute so we only ever touch tags this component owns.
 const MARK = "data-seo";
 
+// Static fallback tags in public/index.html exist for crawlers that do not
+// execute JS. Once this component runs, they would duplicate the managed
+// tags (and e.g. a duplicate <meta name="description"> can shadow per-route
+// values), so we remove the unmanaged copies exactly once.
+let staticTagsCleaned = false;
+
+function cleanStaticTags(): void {
+  if (staticTagsCleaned) return;
+  staticTagsCleaned = true;
+  const selectors = [
+    'meta[name="description"]',
+    'meta[name="robots"]',
+    'meta[property="og:type"]',
+    'meta[property="og:url"]',
+    'meta[property="og:title"]',
+    'meta[property="og:description"]',
+    'meta[property="og:image"]',
+    'meta[name="twitter:card"]',
+    'meta[name="twitter:site"]',
+    'meta[name="twitter:image"]',
+  ];
+  for (const selector of selectors) {
+    document.head.querySelectorAll(`${selector}:not([${MARK}])`).forEach((el) => el.remove());
+  }
+}
+
 const ensureAbsolute = (urlOrPath: string): string =>
   /^https?:\/\//i.test(urlOrPath)
     ? urlOrPath
@@ -93,6 +119,8 @@ export function Seo({
   useEffect(() => {
     const url = ensureAbsolute(path);
     const image = ensureAbsolute(ogImage ?? "/og-image.png");
+
+    cleanStaticTags();
 
     document.title = title;
 
