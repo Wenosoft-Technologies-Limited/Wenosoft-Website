@@ -1,6 +1,5 @@
 @import "tailwindcss" source(none);
 @source "../src";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -169,13 +168,6 @@
   letter-spacing: -0.01em;
 }
 
-@utility text-subheading {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 1.2;
-}
-
 @utility text-caption {
   font-family: var(--font-sans);
   font-weight: 500;
@@ -189,10 +181,4 @@
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
-}
-
-@utility glow-violet {
-  box-shadow:
-    0 10px 40px -10px color-mix(in oklab, var(--electric-violet) 60%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--soft-lavender) 20%, transparent);
 }
