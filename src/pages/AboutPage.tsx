@@ -28,16 +28,16 @@ export function AboutPage() {
     <>
       <Seo title={TITLE} description={DESCRIPTION} path="/about" ogImage={brandStory} />
 
-      <section className="relative overflow-hidden border-b border-white/5">
+      <section className="relative overflow-hidden border-b border-border/60">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute -top-32 left-1/3 h-[520px] w-[520px] rounded-full bg-electric-violet/25 blur-[140px]" />
         </div>
         <div className="relative mx-auto max-w-4xl px-6 py-24 text-center sm:px-8 sm:py-32">
-          <p className="text-caption text-soft-lavender">About</p>
+          <p className="text-caption text-muted-foreground">About</p>
           <h1 className="mt-5 text-display text-foreground">
-            A partnership that <span className="text-soft-lavender">thinks</span>.
+            A partnership that <span className="text-primary dark:text-soft-lavender">thinks</span>.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-soft-lavender">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Wenosoft exists at the intersection of two things most companies struggle to find in one
             place. The ability to build, and the ability to think.
           </p>
@@ -46,7 +46,7 @@ export function AboutPage() {
 
       <Section eyebrow="Brand story" title="Simple rules. Deliberate construction.">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-start">
-          <div className="overflow-hidden rounded-3xl border border-white/10">
+          <div className="overflow-hidden rounded-3xl border border-border">
             <img
               src={brandStory}
               alt="Wenosoft brand story plaque"
@@ -57,7 +57,7 @@ export function AboutPage() {
               height={700}
             />
           </div>
-          <div className="space-y-5 text-base leading-relaxed text-soft-lavender sm:text-lg">
+          <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             <p>
               Wenosoft Technologies exists at the intersection of two things most companies struggle
               to find in one place. The ability to build, and the ability to think. Software
@@ -80,10 +80,10 @@ export function AboutPage() {
       <Section tone="panel" eyebrow="Our principles" title="Three ideas. Every engagement.">
         <ul className="grid gap-5 md:grid-cols-3">
           {PRINCIPLES.map((p, i) => (
-            <li key={p.title} className="rounded-2xl border border-white/10 bg-indigo-deep/40 p-7">
-              <p className="text-caption text-soft-lavender">0{i + 1}</p>
+            <li key={p.title} className="rounded-2xl border border-border bg-card p-7">
+              <p className="text-caption text-muted-foreground">0{i + 1}</p>
               <h3 className="mt-3 font-display text-2xl text-foreground">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-soft-lavender">{p.body}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
             </li>
           ))}
         </ul>
@@ -92,8 +92,8 @@ export function AboutPage() {
       <Section eyebrow="Leadership" align="center">
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-display text-3xl text-foreground sm:text-4xl">{CONTACT.founder}</p>
-          <p className="mt-2 text-caption text-soft-lavender">Founder &amp; CEO</p>
-          <p className="mt-6 text-soft-lavender">
+          <p className="mt-2 text-caption text-muted-foreground">Founder &amp; CEO</p>
+          <p className="mt-6 text-muted-foreground">
             Leading a team that pairs engineering depth with strategic clarity across software, AI,
             cloud, and enterprise systems.
           </p>

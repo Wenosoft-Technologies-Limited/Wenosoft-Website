@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { CONTACT } from "@/config/site";
 
 import { LogoLockup } from "../brand/LogoLockup";
 import { CTALink } from "../ui-brand/CTAButton";
+import { ThemeToggle } from "../ui-brand/ThemeToggle";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -17,6 +18,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -30,12 +32,25 @@ export function Header() {
     setOpen(false);
   }, [pathname]);
 
+  // Escape closes the mobile menu and returns focus to the toggle button.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
     <header
       className={[
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-white/5 bg-indigo-deep/80 backdrop-blur-xl"
+          ? "border-b border-border/60 bg-background/80 backdrop-blur-xl"
           : "border-b border-transparent",
       ].join(" ")}
     >
@@ -43,7 +58,7 @@ export function Header() {
         <LogoLockup variant="light" withTagline />
 
         <nav className="hidden justify-center md:flex" aria-label="Primary">
-          <ul className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1.5">
+          <ul className="flex items-center gap-1 rounded-full border border-border bg-foreground/5 px-2 py-1.5">
             {NAV.map((item) => (
               <li key={item.to}>
                 <NavLink
@@ -54,7 +69,7 @@ export function Header() {
                       "rounded-full px-4 py-1.5 text-sm transition-colors",
                       isActive
                         ? "bg-electric-violet text-white"
-                        : "text-soft-lavender hover:text-foreground",
+                        : "text-muted-foreground hover:text-foreground",
                     ].join(" ")
                   }
                 >
@@ -66,6 +81,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center justify-end gap-3">
+          <ThemeToggle />
           <CTALink
             href={CONTACT.mailto}
             variant="primary"
@@ -75,12 +91,13 @@ export function Header() {
             Start a project
           </CTALink>
           <button
+            ref={menuButtonRef}
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="primary-nav-mobile"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border md:hidden"
           >
             <span className="sr-only">Menu</span>
             <svg
@@ -105,7 +122,7 @@ export function Header() {
       {open && (
         <div
           id="primary-nav-mobile"
-          className="border-t border-white/5 bg-indigo-deep/95 backdrop-blur-xl md:hidden"
+          className="border-t border-border/60 bg-background/95 backdrop-blur-xl md:hidden"
         >
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4" aria-label="Primary">
             {NAV.map((item) => (
@@ -117,7 +134,7 @@ export function Header() {
                 className={({ isActive }) =>
                   [
                     "rounded-lg px-3 py-3 text-base transition-colors",
-                    isActive ? "text-white" : "text-soft-lavender hover:bg-white/5",
+                    isActive ? "text-foreground" : "text-muted-foreground hover:bg-muted",
                   ].join(" ")
                 }
               >

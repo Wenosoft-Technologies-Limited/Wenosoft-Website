@@ -14,9 +14,9 @@ const base =
 const variants: Record<Variant, string> = {
   primary:
     "bg-electric-violet text-white hover:bg-electric-violet/90 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_-8px_color-mix(in_oklab,var(--electric-violet)_70%,transparent)]",
-  secondary: "bg-white text-indigo-deep hover:bg-soft-lavender hover:-translate-y-0.5",
-  outline: "border border-white/20 text-foreground hover:border-soft-lavender hover:bg-white/5",
-  ghost: "text-foreground hover:bg-white/5",
+  secondary: "bg-foreground text-background hover:bg-foreground/85 hover:-translate-y-0.5",
+  outline: "border border-border text-foreground hover:border-soft-lavender hover:bg-muted",
+  ghost: "text-foreground hover:bg-muted",
 };
 
 const sizes: Record<Size, string> = {

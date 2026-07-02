@@ -14,9 +14,9 @@ export function NotFoundPage() {
 
       <div className="flex min-h-[70vh] items-center justify-center px-6">
         <div className="max-w-md text-center">
-          <p className="text-caption text-soft-lavender">404</p>
+          <p className="text-caption text-muted-foreground">404</p>
           <h1 className="mt-3 text-heading text-foreground">This page wandered off.</h1>
-          <p className="mt-3 text-soft-lavender">
+          <p className="mt-3 text-muted-foreground">
             The page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
           <div className="mt-8">

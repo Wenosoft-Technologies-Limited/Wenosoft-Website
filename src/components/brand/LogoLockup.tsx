@@ -11,8 +11,8 @@ interface LogoLockupProps {
 
 export function LogoLockup({ variant = "light", className, withTagline = false }: LogoLockupProps) {
   const textClass = variant === "light" ? "text-foreground" : "text-indigo-deep";
-  const taglineClass = variant === "light" ? "text-soft-lavender" : "text-wenosoft-purple";
-  const markVariant = variant === "light" ? "white" : "default";
+  const taglineClass = variant === "light" ? "text-muted-foreground" : "text-wenosoft-purple";
+  const markVariant = variant === "light" ? "adaptive" : "default";
 
   return (
     <Link

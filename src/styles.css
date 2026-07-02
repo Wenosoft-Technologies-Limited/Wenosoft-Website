@@ -43,13 +43,45 @@
 :root {
   --radius: 0.75rem;
 
-  /* Wenosoft brand tokens (HEX -> oklch) */
+  /* Wenosoft brand tokens (HEX -> oklch) — constant across themes */
   --indigo-deep: oklch(0.184 0.087 282); /* #12103A */
   --wenosoft-purple: oklch(0.355 0.165 281); /* #3D3A9E */
   --electric-violet: oklch(0.504 0.184 287); /* #6355D5 */
   --soft-lavender: oklch(0.808 0.072 285); /* #BDB8F0 */
 
-  /* Semantic surface mapping — dark by default (brand-led) */
+  /* Semantic surface mapping — light theme (default) */
+  --background: oklch(0.985 0.005 285);
+  --foreground: var(--indigo-deep);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--indigo-deep);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--indigo-deep);
+
+  --primary: var(--electric-violet);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: var(--wenosoft-purple);
+  --secondary-foreground: oklch(1 0 0);
+
+  --muted: oklch(0.94 0.02 285);
+  --muted-foreground: oklch(0.42 0.09 282);
+
+  --accent: var(--soft-lavender);
+  --accent-foreground: var(--indigo-deep);
+
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.184 0.087 282 / 12%);
+  --input: oklch(0.184 0.087 282 / 16%);
+  --ring: var(--electric-violet);
+
+  --grid-line: oklch(0.184 0.087 282 / 6%);
+}
+
+.dark {
+  /* Semantic surface mapping — dark theme (brand-led deep indigo) */
   --background: var(--indigo-deep);
   --foreground: oklch(0.985 0.005 285);
 
@@ -76,11 +108,21 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: var(--electric-violet);
+
+  --grid-line: oklch(1 0 0 / 4%);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
   }
 
   html {
@@ -144,8 +186,8 @@
 
 @utility bg-grid-pattern {
   background-image:
-    linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 

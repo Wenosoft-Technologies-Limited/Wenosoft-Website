@@ -65,17 +65,17 @@ export function ServicesPage() {
     <>
       <Seo title={TITLE} description={DESCRIPTION} path="/services" />
 
-      <section className="relative overflow-hidden border-b border-white/5">
+      <section className="relative overflow-hidden border-b border-border/60">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute -top-32 left-1/4 h-[480px] w-[480px] rounded-full bg-wenosoft-purple/40 blur-[140px]" />
           <div className="absolute right-0 top-20 h-[380px] w-[380px] rounded-full bg-electric-violet/25 blur-[120px]" />
         </div>
         <div className="relative mx-auto max-w-4xl px-6 py-24 text-center sm:px-8 sm:py-32">
-          <p className="text-caption text-soft-lavender">Services</p>
+          <p className="text-caption text-muted-foreground">Services</p>
           <h1 className="mt-5 text-display text-foreground">
             Engineering, strategy, and everything between.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-soft-lavender">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             One team. Full-stack capability. Designed to flex from prototype to enterprise scale.
           </p>
         </div>
@@ -86,11 +86,11 @@ export function ServicesPage() {
           {SERVICES.map((s, i) => (
             <li
               key={s.title}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-all hover:-translate-y-1 hover:border-soft-lavender/40"
+              className="group relative overflow-hidden rounded-3xl border border-border bg-foreground/[0.03] p-8 transition-all hover:-translate-y-1 hover:border-soft-lavender/60"
             >
-              <p className="text-caption text-soft-lavender">{`0${i + 1}`}</p>
+              <p className="text-caption text-muted-foreground">{`0${i + 1}`}</p>
               <h2 className="mt-4 font-display text-2xl text-foreground sm:text-3xl">{s.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-soft-lavender sm:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                 {s.body}
               </p>
               <ul className="mt-6 space-y-2 text-sm text-foreground/90">
@@ -109,13 +109,10 @@ export function ServicesPage() {
       <Section tone="panel" eyebrow="Process" title="A simple, deliberate way of working.">
         <ol className="grid gap-5 md:grid-cols-4">
           {PROCESS.map((p, i) => (
-            <li
-              key={p.step}
-              className="relative rounded-2xl border border-white/10 bg-indigo-deep/40 p-6"
-            >
-              <p className="font-display text-4xl text-electric-violet">{`0${i + 1}`}</p>
+            <li key={p.step} className="relative rounded-2xl border border-border bg-card p-6">
+              <p className="font-display text-4xl text-primary">{`0${i + 1}`}</p>
               <h3 className="mt-4 font-display text-xl text-foreground">{p.step}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-soft-lavender">{p.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
             </li>
           ))}
         </ol>
@@ -124,7 +121,7 @@ export function ServicesPage() {
       <Section align="center">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-heading text-foreground">Start the conversation.</h2>
-          <p className="mt-4 text-soft-lavender">
+          <p className="mt-4 text-muted-foreground">
             One email is all it takes. We reply within one business day.
           </p>
           <div className="mt-8 flex justify-center">

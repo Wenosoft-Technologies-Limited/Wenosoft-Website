@@ -21,9 +21,9 @@ export function ContactPage() {
 
         <div className="relative mx-auto grid max-w-6xl gap-16 px-6 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <p className="text-caption text-soft-lavender">Contact</p>
+            <p className="text-caption text-muted-foreground">Contact</p>
             <h1 className="mt-5 text-display text-foreground">Let&apos;s talk.</h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-soft-lavender">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Tell us about the problem you&apos;re solving. We&apos;ll come back within one
               business day with a clear next step, not a sales pitch.
             </p>
@@ -37,7 +37,7 @@ export function ContactPage() {
               </CTALink>
             </div>
 
-            <dl className="mt-14 grid gap-6 border-t border-white/10 pt-10 sm:grid-cols-2">
+            <dl className="mt-14 grid gap-6 border-t border-border pt-10 sm:grid-cols-2">
               <ContactCard
                 label="General inquiries"
                 value={CONTACT.email}
@@ -49,13 +49,13 @@ export function ContactPage() {
             </dl>
 
             <div className="mt-10">
-              <p className="text-caption text-soft-lavender">Connect with us</p>
+              <p className="text-caption text-muted-foreground">Connect with us</p>
               <SocialLinks className="mt-4" iconClassName="h-6 w-6" />
             </div>
           </div>
 
           <div className="relative">
-            <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <div className="overflow-hidden rounded-3xl border border-border shadow-2xl">
               <img
                 src={banner}
                 alt="Wenosoft Technologies storefront signage"
@@ -66,7 +66,7 @@ export function ContactPage() {
                 height={900}
               />
             </div>
-            <p className="mt-4 text-center text-xs uppercase tracking-[0.18em] text-soft-lavender">
+            <p className="mt-4 text-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
               {SITE.tagline}
             </p>
           </div>
@@ -79,12 +79,12 @@ export function ContactPage() {
 function ContactCard({ label, value, href }: { label: string; value: string; href?: string }) {
   const content = (
     <>
-      <dt className="text-caption text-soft-lavender">{label}</dt>
+      <dt className="text-caption text-muted-foreground">{label}</dt>
       <dd className="mt-2 font-display text-lg text-foreground">{value}</dd>
     </>
   );
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-soft-lavender/40">
+    <div className="rounded-2xl border border-border bg-foreground/[0.03] p-5 transition-colors hover:border-soft-lavender/60">
       {href ? (
         <a href={href} className="block">
           {content}

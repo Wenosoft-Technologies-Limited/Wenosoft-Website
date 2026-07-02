@@ -55,11 +55,11 @@ function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-6 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1.2fr_1fr] lg:items-center">
         <div>
-          <p className="text-caption text-soft-lavender">Wenosoft Technologies</p>
+          <p className="text-caption text-muted-foreground">Wenosoft Technologies</p>
           <h1 className="mt-5 text-display text-foreground">
-            Clarity out of <span className="text-soft-lavender">complexity</span>.
+            Clarity out of <span className="text-primary dark:text-soft-lavender">complexity</span>.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-soft-lavender">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             We build software with deliberate structure. Our team understands the code and the
             business case behind it. You get systems that last.
           </p>
@@ -69,12 +69,12 @@ function Hero() {
             </CTALink>
             <Link
               to="/services"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/15 px-8 text-base text-foreground transition-colors hover:border-soft-lavender hover:bg-white/5"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-border px-8 text-base text-foreground transition-colors hover:border-soft-lavender hover:bg-muted"
             >
               What we do
             </Link>
           </div>
-          <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-white/10 pt-8 text-left">
+          <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8 text-left">
             <Stat k="100%" v="Senior team" />
             <Stat k="∞" v="Ownership" />
             <Stat k="1:1" v="Partnership" />
@@ -105,7 +105,7 @@ function Stat({ k, v }: { k: string; v: string }) {
   return (
     <div>
       <dt className="font-display text-2xl text-foreground sm:text-3xl">{k}</dt>
-      <dd className="mt-1 text-xs uppercase tracking-[0.18em] text-soft-lavender">{v}</dd>
+      <dd className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">{v}</dd>
     </div>
   );
 }
@@ -120,8 +120,8 @@ function TrustStrip() {
     "Data Analytics",
   ];
   return (
-    <div className="relative border-y border-white/5 bg-wenosoft-purple/20">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-6 py-6 text-caption text-soft-lavender sm:px-8">
+    <div className="relative border-y border-border/60 bg-secondary/10 dark:bg-wenosoft-purple/20">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-6 py-6 text-caption text-muted-foreground sm:px-8">
         {items.map((i) => (
           <span key={i}>{i}</span>
         ))}
@@ -141,13 +141,13 @@ function CapabilitiesGrid() {
         {CAPABILITIES.map((c) => (
           <li
             key={c.title}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:-translate-y-1 hover:border-soft-lavender/40 hover:bg-white/[0.05]"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-foreground/[0.03] p-6 transition-all hover:-translate-y-1 hover:border-soft-lavender/60 hover:bg-foreground/[0.05]"
           >
             <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-electric-violet/20 ring-1 ring-electric-violet/30">
-              <LogoMark variant="white" className="h-5 w-5" />
+              <LogoMark variant="adaptive" className="h-5 w-5" />
             </div>
             <h3 className="font-display text-xl text-foreground">{c.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-soft-lavender">{c.body}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
           </li>
         ))}
       </ul>
@@ -157,7 +157,7 @@ function CapabilitiesGrid() {
 
 function PhilosophyPanel() {
   return (
-    <section className="relative overflow-hidden bg-wenosoft-purple py-24 sm:py-32">
+    <section className="dark relative overflow-hidden bg-wenosoft-purple py-24 sm:py-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-30"
@@ -173,7 +173,7 @@ function PhilosophyPanel() {
         </div>
         <div>
           <p className="text-caption text-soft-lavender">Brand Story</p>
-          <p className="mt-5 font-display text-2xl leading-snug text-foreground sm:text-3xl">
+          <p className="mt-5 font-display text-2xl leading-snug text-white sm:text-3xl">
             The mark is built from geometry, the most fundamental language of technology. Every line
             of code follows logic. Every system follows structure.
           </p>
@@ -184,7 +184,7 @@ function PhilosophyPanel() {
           <div className="mt-8">
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-soft-lavender"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-soft-lavender"
             >
               Read the full story
               <span aria-hidden>→</span>
@@ -199,11 +199,11 @@ function PhilosophyPanel() {
 function ContactCTA() {
   return (
     <Section align="center">
-      <div className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-wenosoft-purple/60 via-indigo-deep to-indigo-deep p-10 text-center sm:p-16">
+      <div className="dark relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-wenosoft-purple/60 via-indigo-deep to-indigo-deep p-10 text-center sm:p-16">
         <div aria-hidden className="absolute inset-0 bg-grid-pattern opacity-20" />
         <div className="relative">
           <p className="text-caption text-soft-lavender">Let&apos;s talk</p>
-          <h2 className="mt-4 text-heading text-foreground">Build something that lasts.</h2>
+          <h2 className="mt-4 text-heading text-white">Build something that lasts.</h2>
           <p className="mx-auto mt-4 max-w-xl text-soft-lavender">
             Tell us about the problem. We&apos;ll bring the structure, the people, and the code.
           </p>
