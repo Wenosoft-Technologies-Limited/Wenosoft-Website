@@ -182,3 +182,48 @@
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
 }
+
+/* Ambient background motion — slow, drifting gradient blobs. */
+@keyframes weno-float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.08);
+  }
+}
+
+@keyframes weno-float-slower {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-4%, 3%, 0) scale(1.12);
+  }
+}
+
+@utility animate-float-slow {
+  animation: weno-float-slow 16s ease-in-out infinite;
+}
+
+@utility animate-float-slower {
+  animation: weno-float-slower 22s ease-in-out infinite;
+}
+
+/* Honor the user's reduced-motion preference: neutralize CSS-driven motion.
+   Framer Motion is handled separately via <MotionConfig reducedMotion="user">. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

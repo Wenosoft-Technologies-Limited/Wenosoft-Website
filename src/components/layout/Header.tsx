@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "motion/react";
 
 import { CONTACT } from "@/config/site";
 
+import { EASE_OUT } from "../motion/variants";
 import { LogoLockup } from "../brand/LogoLockup";
 import { CTALink } from "../ui-brand/CTAButton";
 import { ThemeToggle } from "../ui-brand/ThemeToggle";
@@ -46,7 +48,10 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: EASE_OUT }}
       className={[
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
@@ -64,16 +69,27 @@ export function Header() {
                 <NavLink
                   to={item.to}
                   end={item.to === "/"}
-                  className={({ isActive }) =>
-                    [
-                      "rounded-full px-4 py-1.5 text-sm transition-colors",
-                      isActive
-                        ? "bg-electric-violet text-white"
-                        : "text-muted-foreground hover:text-foreground",
-                    ].join(" ")
-                  }
+                  className="relative block rounded-full px-4 py-1.5 text-sm transition-colors"
                 >
-                  {item.label}
+                  {({ isActive }) => (
+                    <>
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-active-pill"
+                          className="absolute inset-0 rounded-full bg-electric-violet"
+                          transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                        />
+                      )}
+                      <span
+                        className={[
+                          "relative z-10",
+                          isActive ? "text-white" : "text-muted-foreground hover:text-foreground",
+                        ].join(" ")}
+                      >
+                        {item.label}
+                      </span>
+                    </>
+                  )}
                 </NavLink>
               </li>
             ))}
@@ -119,34 +135,41 @@ export function Header() {
         </div>
       </div>
 
-      {open && (
-        <div
-          id="primary-nav-mobile"
-          className="border-t border-border/60 bg-background/95 backdrop-blur-xl md:hidden"
-        >
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4" aria-label="Primary">
-            {NAV.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === "/"}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  [
-                    "rounded-lg px-3 py-3 text-base transition-colors",
-                    isActive ? "text-foreground" : "text-muted-foreground hover:bg-muted",
-                  ].join(" ")
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-            <CTALink href={CONTACT.mailto} variant="primary" size="md" className="mt-3">
-              Start a project
-            </CTALink>
-          </nav>
-        </div>
-      )}
-    </header>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="mobile-nav"
+            id="primary-nav-mobile"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE_OUT }}
+            className="overflow-hidden border-t border-border/60 bg-background/95 backdrop-blur-xl md:hidden"
+          >
+            <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4" aria-label="Primary">
+              {NAV.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.to === "/"}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    [
+                      "rounded-lg px-3 py-3 text-base transition-colors",
+                      isActive ? "text-foreground" : "text-muted-foreground hover:bg-muted",
+                    ].join(" ")
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+              <CTALink href={CONTACT.mailto} variant="primary" size="md" className="mt-3">
+                Start a project
+              </CTALink>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

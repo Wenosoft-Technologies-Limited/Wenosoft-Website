@@ -1,4 +1,7 @@
 import banner from "@/assets/wenosoft-banner.png";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import { scaleIn } from "@/components/motion/variants";
 import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { SocialLinks } from "@/components/ui-brand/SocialLinks";
@@ -15,46 +18,59 @@ export function ContactPage() {
 
       <section className="relative overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-wenosoft-purple/40 blur-[140px]" />
-          <div className="absolute right-0 top-10 h-[420px] w-[420px] rounded-full bg-electric-violet/30 blur-[120px]" />
+          <div className="animate-float-slow absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-wenosoft-purple/40 blur-[140px]" />
+          <div className="animate-float-slower absolute right-0 top-10 h-[420px] w-[420px] rounded-full bg-electric-violet/30 blur-[120px]" />
         </div>
 
         <div className="relative mx-auto grid max-w-6xl gap-16 px-6 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <p className="text-caption text-muted-foreground">Contact</p>
-            <h1 className="mt-5 text-display text-foreground">Let&apos;s talk.</h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Tell us about the problem you&apos;re solving. We&apos;ll come back within one
-              business day with a clear next step, not a sales pitch.
-            </p>
+            <Reveal>
+              <p className="text-caption text-muted-foreground">Contact</p>
+              <h1 className="mt-5 text-display text-foreground">Let&apos;s talk.</h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                Tell us about the problem you&apos;re solving. We&apos;ll come back within one
+                business day with a clear next step, not a sales pitch.
+              </p>
+            </Reveal>
 
-            <div className="mt-10 flex flex-wrap gap-3">
+            <Reveal delay={0.1} className="mt-10 flex flex-wrap gap-3">
               <CTALink href={CONTACT.mailto} variant="primary" size="lg">
                 Email the team
               </CTALink>
               <CTALink href={`mailto:${CONTACT.email}`} variant="outline" size="lg">
                 {CONTACT.email}
               </CTALink>
-            </div>
+            </Reveal>
 
-            <dl className="mt-14 grid gap-6 border-t border-border pt-10 sm:grid-cols-2">
-              <ContactCard
-                label="General inquiries"
-                value={CONTACT.email}
-                href={`mailto:${CONTACT.email}`}
-              />
-              <ContactCard label="Office" value={CONTACT.location} />
-              <ContactCard label="Founder & CEO" value={CONTACT.founder} />
-              <ContactCard label="Response time" value="Within 1 business day" />
-            </dl>
+            <Stagger
+              as="dl"
+              className="mt-14 grid gap-6 border-t border-border pt-10 sm:grid-cols-2"
+            >
+              <StaggerItem interactive>
+                <ContactCard
+                  label="General inquiries"
+                  value={CONTACT.email}
+                  href={`mailto:${CONTACT.email}`}
+                />
+              </StaggerItem>
+              <StaggerItem interactive>
+                <ContactCard label="Office" value={CONTACT.location} />
+              </StaggerItem>
+              <StaggerItem interactive>
+                <ContactCard label="Founder & CEO" value={CONTACT.founder} />
+              </StaggerItem>
+              <StaggerItem interactive>
+                <ContactCard label="Response time" value="Within 1 business day" />
+              </StaggerItem>
+            </Stagger>
 
-            <div className="mt-10">
+            <Reveal className="mt-10">
               <p className="text-caption text-muted-foreground">Connect with us</p>
               <SocialLinks className="mt-4" iconClassName="h-6 w-6" />
-            </div>
+            </Reveal>
           </div>
 
-          <div className="relative">
+          <Reveal variants={scaleIn} delay={0.15} className="relative">
             <div className="overflow-hidden rounded-3xl border border-border shadow-2xl">
               <img
                 src={banner}
@@ -69,7 +85,7 @@ export function ContactPage() {
             <p className="mt-4 text-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
               {SITE.tagline}
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

@@ -1,9 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { useLocation, useOutlet } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
 
+import { PageTransition } from "../motion/PageTransition";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 export function RootLayout() {
+  const location = useLocation();
+  const outlet = useOutlet();
+
   return (
     <div className="relative flex min-h-screen flex-col">
       <a
@@ -14,7 +19,9 @@ export function RootLayout() {
       </a>
       <Header />
       <main id="main-content" className="flex-1">
-        <Outlet />
+        <AnimatePresence mode="wait" initial={false}>
+          <PageTransition key={location.pathname}>{outlet}</PageTransition>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>

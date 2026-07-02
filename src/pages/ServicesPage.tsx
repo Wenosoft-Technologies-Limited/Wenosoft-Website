@@ -1,4 +1,6 @@
 import { Section } from "@/components/layout/Section";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE } from "@/config/site";
@@ -86,26 +88,37 @@ export function ServicesPage() {
 
       <section className="relative overflow-hidden border-b border-border/60">
         <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 left-1/4 h-[480px] w-[480px] rounded-full bg-wenosoft-purple/40 blur-[140px]" />
-          <div className="absolute right-0 top-20 h-[380px] w-[380px] rounded-full bg-electric-violet/25 blur-[120px]" />
+          <div className="animate-float-slow absolute -top-32 left-1/4 h-[480px] w-[480px] rounded-full bg-wenosoft-purple/40 blur-[140px]" />
+          <div className="animate-float-slower absolute right-0 top-20 h-[380px] w-[380px] rounded-full bg-electric-violet/25 blur-[120px]" />
         </div>
-        <div className="relative mx-auto max-w-4xl px-6 py-24 text-center sm:px-8 sm:py-32">
-          <p className="text-caption text-muted-foreground">Services</p>
-          <h1 className="mt-5 text-display text-foreground">
-            Engineering, strategy, and everything between.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            One team. Full-stack capability. Designed to flex from prototype to enterprise scale.
-          </p>
-        </div>
+        <Stagger
+          as="div"
+          className="relative mx-auto max-w-4xl px-6 py-24 text-center sm:px-8 sm:py-32"
+        >
+          <StaggerItem>
+            <p className="text-caption text-muted-foreground">Services</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h1 className="mt-5 text-display text-foreground">
+              Engineering, strategy, and everything between.
+            </h1>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              One team. Full-stack capability. Designed to flex from prototype to enterprise scale.
+            </p>
+          </StaggerItem>
+        </Stagger>
       </section>
 
       <Section>
-        <ul className="grid gap-5 md:grid-cols-2">
+        <Stagger as="ul" className="grid gap-5 md:grid-cols-2">
           {SERVICES.map((s, i) => (
-            <li
+            <StaggerItem
               key={s.title}
-              className="group relative overflow-hidden rounded-3xl border border-border bg-foreground/[0.03] p-8 transition-all hover:-translate-y-1 hover:border-soft-lavender/60"
+              as="li"
+              interactive
+              className="group relative overflow-hidden rounded-3xl border border-border bg-foreground/[0.03] p-8 transition-colors hover:border-soft-lavender/60"
             >
               <p className="text-caption text-muted-foreground">{`0${i + 1}`}</p>
               <h2 className="mt-4 font-display text-2xl text-foreground sm:text-3xl">{s.title}</h2>
@@ -120,25 +133,30 @@ export function ServicesPage() {
                   </li>
                 ))}
               </ul>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </Stagger>
       </Section>
 
       <Section tone="panel" eyebrow="Process" title="A simple, deliberate way of working.">
-        <ol className="grid gap-5 md:grid-cols-4">
+        <Stagger as="ol" className="grid gap-5 md:grid-cols-4">
           {PROCESS.map((p, i) => (
-            <li key={p.step} className="relative rounded-2xl border border-border bg-card p-6">
+            <StaggerItem
+              key={p.step}
+              as="li"
+              interactive
+              className="relative rounded-2xl border border-border bg-card p-6"
+            >
               <p className="font-display text-4xl text-primary">{`0${i + 1}`}</p>
               <h3 className="mt-4 font-display text-xl text-foreground">{p.step}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </li>
+            </StaggerItem>
           ))}
-        </ol>
+        </Stagger>
       </Section>
 
       <Section align="center">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-heading text-foreground">Start the conversation.</h2>
           <p className="mt-4 text-muted-foreground">
             One email is all it takes. We reply within one business day.
@@ -148,7 +166,7 @@ export function ServicesPage() {
               Contact us
             </CTALink>
           </div>
-        </div>
+        </Reveal>
       </Section>
     </>
   );

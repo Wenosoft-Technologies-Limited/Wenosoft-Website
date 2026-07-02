@@ -1,5 +1,8 @@
 import brandStory from "@/assets/wenosoft-brand-story.png";
 import { Section } from "@/components/layout/Section";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import { scaleIn, slideInLeft } from "@/components/motion/variants";
 import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE } from "@/config/site";
@@ -30,23 +33,36 @@ export function AboutPage() {
 
       <section className="relative overflow-hidden border-b border-border/60">
         <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 left-1/3 h-[520px] w-[520px] rounded-full bg-electric-violet/25 blur-[140px]" />
+          <div className="animate-float-slow absolute -top-32 left-1/3 h-[520px] w-[520px] rounded-full bg-electric-violet/25 blur-[140px]" />
         </div>
-        <div className="relative mx-auto max-w-4xl px-6 py-24 text-center sm:px-8 sm:py-32">
-          <p className="text-caption text-muted-foreground">About</p>
-          <h1 className="mt-5 text-display text-foreground">
-            A partnership that <span className="text-primary dark:text-soft-lavender">thinks</span>.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Wenosoft exists at the intersection of two things most companies struggle to find in one
-            place. The ability to build, and the ability to think.
-          </p>
-        </div>
+        <Stagger
+          as="div"
+          className="relative mx-auto max-w-4xl px-6 py-24 text-center sm:px-8 sm:py-32"
+        >
+          <StaggerItem>
+            <p className="text-caption text-muted-foreground">About</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h1 className="mt-5 text-display text-foreground">
+              A partnership that{" "}
+              <span className="text-primary dark:text-soft-lavender">thinks</span>.
+            </h1>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Wenosoft exists at the intersection of two things most companies struggle to find in
+              one place. The ability to build, and the ability to think.
+            </p>
+          </StaggerItem>
+        </Stagger>
       </section>
 
       <Section eyebrow="Brand story" title="Simple rules. Deliberate construction.">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:items-start">
-          <div className="overflow-hidden rounded-3xl border border-border">
+          <Reveal
+            variants={slideInLeft}
+            className="overflow-hidden rounded-3xl border border-border"
+          >
             <img
               src={brandStory}
               alt="Wenosoft brand story plaque"
@@ -56,8 +72,11 @@ export function AboutPage() {
               width={1080}
               height={1350}
             />
-          </div>
-          <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          </Reveal>
+          <Reveal
+            delay={0.1}
+            className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg"
+          >
             <p>
               Wenosoft Technologies exists at the intersection of two things most companies struggle
               to find in one place. The ability to build, and the ability to think. Software
@@ -73,24 +92,29 @@ export function AboutPage() {
               That is what Wenosoft delivers for every client. Clarity out of complexity. Structure
               where there was none. Software that works, and a partnership that thinks.
             </p>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section tone="panel" eyebrow="Our principles" title="Three ideas. Every engagement.">
-        <ul className="grid gap-5 md:grid-cols-3">
+        <Stagger as="ul" className="grid gap-5 md:grid-cols-3">
           {PRINCIPLES.map((p, i) => (
-            <li key={p.title} className="rounded-2xl border border-border bg-card p-7">
+            <StaggerItem
+              key={p.title}
+              as="li"
+              interactive
+              className="rounded-2xl border border-border bg-card p-7"
+            >
               <p className="text-caption text-muted-foreground">0{i + 1}</p>
               <h3 className="mt-3 font-display text-2xl text-foreground">{p.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </Stagger>
       </Section>
 
       <Section eyebrow="Leadership" align="center">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variants={scaleIn} className="mx-auto max-w-2xl text-center">
           <p className="font-display text-3xl text-foreground sm:text-4xl">{CONTACT.founder}</p>
           <p className="mt-2 text-caption text-muted-foreground">Founder &amp; CEO</p>
           <p className="mt-6 text-muted-foreground">
@@ -102,7 +126,7 @@ export function AboutPage() {
               Work with us
             </CTALink>
           </div>
-        </div>
+        </Reveal>
       </Section>
     </>
   );

@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 
 import iconShowcase from "@/assets/wenosoft-icon-showcase.png";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Section } from "@/components/layout/Section";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import { scaleIn } from "@/components/motion/variants";
 import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE, SOCIAL } from "@/config/site";
@@ -64,41 +68,60 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-20%] h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-electric-violet/30 blur-[140px]" />
-        <div className="absolute bottom-[-40%] right-[-10%] h-[480px] w-[480px] rounded-full bg-wenosoft-purple/40 blur-[120px]" />
+        <div className="animate-float-slow absolute left-1/2 top-[-20%] h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-electric-violet/30 blur-[140px]" />
+        <div className="animate-float-slower absolute bottom-[-40%] right-[-10%] h-[480px] w-[480px] rounded-full bg-wenosoft-purple/40 blur-[120px]" />
       </div>
       <div aria-hidden className="absolute inset-0 bg-grid-pattern opacity-40" />
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-6 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-        <div>
-          <p className="text-caption text-muted-foreground">Wenosoft Technologies</p>
-          <h1 className="mt-5 text-display text-foreground">
-            Clarity out of <span className="text-primary dark:text-soft-lavender">complexity</span>.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            We build software with deliberate structure. Our team understands the code and the
-            business case behind it. You get systems that last.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <CTALink href={CONTACT.mailto} variant="primary" size="lg">
-              Get started
-            </CTALink>
-            <Link
-              to="/services"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-border px-8 text-base text-foreground transition-colors hover:border-soft-lavender hover:bg-muted"
-            >
-              What we do
-            </Link>
-          </div>
-          <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8 text-left">
-            <Stat k="100%" v="Senior team" />
-            <Stat k="∞" v="Ownership" />
-            <Stat k="1:1" v="Partnership" />
-          </dl>
-        </div>
+        <Stagger as="div">
+          <StaggerItem>
+            <p className="text-caption text-muted-foreground">Wenosoft Technologies</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h1 className="mt-5 text-display text-foreground">
+              Clarity out of{" "}
+              <span className="text-primary dark:text-soft-lavender">complexity</span>.
+            </h1>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              We build software with deliberate structure. Our team understands the code and the
+              business case behind it. You get systems that last.
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <CTALink href={CONTACT.mailto} variant="primary" size="lg">
+                Get started
+              </CTALink>
+              <Link
+                to="/services"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-border px-8 text-base text-foreground transition-all duration-200 active:scale-[0.97] hover:border-soft-lavender hover:bg-muted"
+              >
+                What we do
+              </Link>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8 text-left">
+              <Stat k="100%" v="Senior team" />
+              <Stat k="∞" v="Ownership" />
+              <Stat k="1:1" v="Partnership" />
+            </dl>
+          </StaggerItem>
+        </Stagger>
 
-        <div className="relative mx-auto flex w-full max-w-md items-center justify-center">
-          <div className="relative aspect-square w-full">
+        <Reveal
+          variants={scaleIn}
+          delay={0.2}
+          className="relative mx-auto flex w-full max-w-md items-center justify-center"
+        >
+          <motion.div
+            className="relative aspect-square w-full"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
+          >
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-electric-violet/40 via-wenosoft-purple/30 to-transparent blur-2xl" />
             <img
               src={iconShowcase}
@@ -110,8 +133,8 @@ function Hero() {
               height={1350}
               fetchPriority="high"
             />
-          </div>
-        </div>
+          </motion.div>
+        </Reveal>
       </div>
     </section>
   );
@@ -137,11 +160,14 @@ function TrustStrip() {
   ];
   return (
     <div className="relative border-y border-border/60 bg-secondary/10 dark:bg-wenosoft-purple/20">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-6 py-6 text-caption text-muted-foreground sm:px-8">
+      <Stagger
+        as="div"
+        className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-6 py-6 text-caption text-muted-foreground sm:px-8"
+      >
         {items.map((i) => (
-          <span key={i}>{i}</span>
+          <StaggerItem key={i}>{i}</StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </div>
   );
 }
@@ -153,20 +179,22 @@ function CapabilitiesGrid() {
       title="Software that works. A partnership that thinks."
       intro="We pair engineering depth with strategic clarity. From first prototype to enterprise scale."
     >
-      <ul className="grid gap-4 sm:grid-cols-2">
+      <Stagger as="ul" className="grid gap-4 sm:grid-cols-2">
         {CAPABILITIES.map((c) => (
-          <li
+          <StaggerItem
             key={c.title}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-foreground/[0.03] p-6 transition-all hover:-translate-y-1 hover:border-soft-lavender/60 hover:bg-foreground/[0.05]"
+            as="li"
+            interactive
+            className="group relative overflow-hidden rounded-2xl border border-border bg-foreground/[0.03] p-6 transition-colors hover:border-soft-lavender/60 hover:bg-foreground/[0.05]"
           >
-            <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-electric-violet/20 ring-1 ring-electric-violet/30">
+            <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-electric-violet/20 ring-1 ring-electric-violet/30 transition-transform duration-300 group-hover:rotate-6">
               <LogoMark variant="adaptive" className="h-5 w-5" />
             </div>
             <h3 className="font-display text-xl text-foreground">{c.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-          </li>
+          </StaggerItem>
         ))}
-      </ul>
+      </Stagger>
     </Section>
   );
 }
@@ -180,14 +208,14 @@ function PhilosophyPanel() {
       />
       <div
         aria-hidden
-        className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-electric-violet/40 blur-3xl"
+        className="animate-float-slow absolute -right-20 -top-20 h-80 w-80 rounded-full bg-electric-violet/40 blur-3xl"
       />
 
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 sm:px-8 md:grid-cols-[1fr_1.4fr] md:items-center">
-        <div className="relative">
+        <Reveal variants={scaleIn} className="relative">
           <LogoMark variant="white" className="h-32 w-auto opacity-90" />
-        </div>
-        <div>
+        </Reveal>
+        <Reveal delay={0.1}>
           <p className="text-caption text-soft-lavender">Brand Story</p>
           <p className="mt-5 font-display text-2xl leading-snug text-white sm:text-3xl">
             The mark is built from geometry, the most fundamental language of technology. Every line
@@ -200,13 +228,18 @@ function PhilosophyPanel() {
           <div className="mt-8">
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-soft-lavender"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-white hover:text-soft-lavender"
             >
               Read the full story
-              <span aria-hidden>→</span>
+              <span
+                aria-hidden
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -215,7 +248,10 @@ function PhilosophyPanel() {
 function ContactCTA() {
   return (
     <Section align="center">
-      <div className="dark relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-wenosoft-purple/60 via-indigo-deep to-indigo-deep p-10 text-center sm:p-16">
+      <Reveal
+        variants={scaleIn}
+        className="dark relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-wenosoft-purple/60 via-indigo-deep to-indigo-deep p-10 text-center sm:p-16"
+      >
         <div aria-hidden className="absolute inset-0 bg-grid-pattern opacity-20" />
         <div className="relative">
           <p className="text-caption text-soft-lavender">Let&apos;s talk</p>
@@ -232,7 +268,7 @@ function ContactCTA() {
             </CTALink>
           </div>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }
