@@ -39,7 +39,7 @@ export function AboutPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-soft-lavender">
             Wenosoft exists at the intersection of two things most companies struggle to find in one
-            place — the ability to build, and the ability to think.
+            place. The ability to build, and the ability to think.
           </p>
         </div>
       </section>

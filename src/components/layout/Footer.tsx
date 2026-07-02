@@ -58,7 +58,6 @@ export function Footer() {
                 {CONTACT.website}
               </a>
             </li>
-            <li className="text-soft-lavender">Founder &amp; CEO — {CONTACT.founder}</li>
           </ul>
         </div>
       </div>
