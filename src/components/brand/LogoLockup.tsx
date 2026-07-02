@@ -22,14 +22,16 @@ export function LogoLockup({ variant = "light", className, withTagline = false }
     >
       <LogoMark
         variant={markVariant}
-        className="h-8 w-auto transition-transform duration-300 group-hover:rotate-[-3deg]"
+        className="h-8 w-auto shrink-0 transition-transform duration-300 group-hover:rotate-[-3deg]"
       />
-      <span className="flex flex-col leading-none">
-        <span className={`font-display text-xl font-semibold tracking-tight ${textClass}`}>
+      <span className="flex min-w-0 flex-col leading-none">
+        <span className={`truncate font-display text-xl font-semibold tracking-tight ${textClass}`}>
           Wenosoft
         </span>
         {withTagline && (
-          <span className={`mt-0.5 text-[0.625rem] uppercase tracking-[0.2em] ${taglineClass}`}>
+          <span
+            className={`mt-0.5 truncate text-[0.625rem] uppercase tracking-[0.2em] ${taglineClass}`}
+          >
             Technologies
           </span>
         )}

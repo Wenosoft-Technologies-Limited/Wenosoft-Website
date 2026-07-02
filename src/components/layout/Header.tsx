@@ -59,8 +59,8 @@ export function Header() {
           : "border-b border-transparent",
       ].join(" ")}
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-4 px-6 py-4 sm:px-8">
-        <LogoLockup variant="light" withTagline />
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-2 px-6 py-4 sm:gap-4 sm:px-8">
+        <LogoLockup variant="light" withTagline className="min-w-0" />
 
         <nav className="hidden justify-center md:flex" aria-label="Primary">
           <ul className="flex items-center gap-1 rounded-full border border-border bg-foreground/5 px-2 py-1.5">
@@ -96,13 +96,13 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-3">
+        <div className="flex items-center justify-end gap-2 sm:gap-3">
           <ThemeToggle />
           <CTALink
             href={CONTACT.mailto}
             variant="primary"
             size="sm"
-            className="hidden sm:inline-flex"
+            className="hidden md:inline-flex"
           >
             Start a project
           </CTALink>
