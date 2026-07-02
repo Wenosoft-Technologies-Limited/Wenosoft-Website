@@ -17,7 +17,7 @@ export function LogoLockup({ variant = "light", className, withTagline = false }
   return (
     <Link
       to="/"
-      aria-label="Wenosoft Technologies — Home"
+      aria-label="Wenosoft Technologies, home"
       className={["group inline-flex items-center gap-3", className].filter(Boolean).join(" ")}
     >
       <LogoMark

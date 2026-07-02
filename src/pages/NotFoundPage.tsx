@@ -6,7 +6,7 @@ export function NotFoundPage() {
   return (
     <>
       <Seo
-        title={`Page not found — ${SITE.name}`}
+        title={`Page not found | ${SITE.name}`}
         description="The page you are looking for doesn't exist or has been moved."
         path="/404"
         noIndex

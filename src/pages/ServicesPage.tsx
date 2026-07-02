@@ -3,9 +3,9 @@ import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE } from "@/config/site";
 
-const TITLE = `Services — ${SITE.name}`;
+const TITLE = `Services | ${SITE.name}`;
 const DESCRIPTION =
-  "From custom software and AI solutions to cloud, automation and IT consulting — engineered with structure and shipped with care.";
+  "Custom software, AI, cloud, automation, and IT consulting. Engineered with structure and shipped with care.";
 
 const SERVICES = [
   {
@@ -15,7 +15,7 @@ const SERVICES = [
   },
   {
     title: "Artificial Intelligence Solutions",
-    body: "Practical AI capability — from intelligent assistants to data-driven decision systems.",
+    body: "Practical AI capability, from intelligent assistants to decision systems grounded in your data.",
     points: ["LLM integrations", "Workflow copilots", "Custom model deployment"],
   },
   {
@@ -25,7 +25,7 @@ const SERVICES = [
   },
   {
     title: "Cloud Solutions",
-    body: "Resilient infrastructure on AWS, GCP and Azure — designed for scale and cost discipline.",
+    body: "Resilient infrastructure on AWS, GCP, and Azure. Designed for scale and cost discipline.",
     points: ["Platform engineering", "Migration & lift-and-shift", "Cost optimization"],
   },
   {
@@ -35,7 +35,7 @@ const SERVICES = [
   },
   {
     title: "Data Analytics",
-    body: "From raw events to executive dashboards — pipelines and visualizations that tell the truth.",
+    body: "From raw events to executive dashboards. Pipelines and visualizations that tell the truth.",
     points: ["Data pipelines", "BI dashboards", "Warehouse modeling"],
   },
   {
@@ -123,9 +123,9 @@ export function ServicesPage() {
 
       <Section align="center">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-heading text-foreground">Have a project in mind?</h2>
+          <h2 className="text-heading text-foreground">Start the conversation.</h2>
           <p className="mt-4 text-soft-lavender">
-            One email is all it takes to start the conversation.
+            One email is all it takes. We reply within one business day.
           </p>
           <div className="mt-8 flex justify-center">
             <CTALink href={CONTACT.mailto} variant="primary" size="lg">

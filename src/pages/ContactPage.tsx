@@ -3,7 +3,7 @@ import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE } from "@/config/site";
 
-const TITLE = `Contact — ${SITE.name}`;
+const TITLE = `Contact | ${SITE.name}`;
 const DESCRIPTION =
   "Get in touch with Wenosoft Technologies. Email info@wenosoft.com to start a consulting or software engagement.";
 
@@ -24,7 +24,7 @@ export function ContactPage() {
             <h1 className="mt-5 text-display text-foreground">Let&apos;s talk.</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-soft-lavender">
               Tell us about the problem you&apos;re solving. We&apos;ll come back within one
-              business day with a clear next step — not a sales pitch.
+              business day with a clear next step, not a sales pitch.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">

@@ -4,14 +4,14 @@ import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE } from "@/config/site";
 
-const TITLE = `About — ${SITE.name}`;
+const TITLE = `About | ${SITE.name}`;
 const DESCRIPTION =
   "Wenosoft Technologies exists at the intersection of two things most companies struggle to find in one place: the ability to build, and the ability to think.";
 
 const PRINCIPLES = [
   {
     title: "Build",
-    body: "We ship production software — not slideware. Engineering judgment at every layer.",
+    body: "We ship production software, not slideware. Engineering judgment at every layer.",
   },
   {
     title: "Think",
@@ -65,7 +65,7 @@ export function AboutPage() {
               code and the business case behind it.
             </p>
             <p>
-              The mark is built from geometry — the most fundamental language of technology. Every
+              The mark is built from geometry, the most fundamental language of technology. Every
               line of code follows logic. Every system follows structure. Every solution, no matter
               how complex, starts with a simple set of rules.
             </p>
@@ -94,8 +94,8 @@ export function AboutPage() {
           <p className="font-display text-3xl text-foreground sm:text-4xl">{CONTACT.founder}</p>
           <p className="mt-2 text-caption text-soft-lavender">Founder &amp; CEO</p>
           <p className="mt-6 text-soft-lavender">
-            Leading a team that pairs engineering depth with strategic clarity — across software,
-            AI, cloud, and enterprise systems.
+            Leading a team that pairs engineering depth with strategic clarity across software, AI,
+            cloud, and enterprise systems.
           </p>
           <div className="mt-10 flex justify-center">
             <CTALink href={CONTACT.mailto} variant="primary" size="lg">

@@ -8,17 +8,27 @@ import { Seo } from "@/components/seo/Seo";
 import { CTALink } from "@/components/ui-brand/CTAButton";
 import { CONTACT, SITE } from "@/config/site";
 
-const TITLE = `${SITE.name} — Experience the Future of Technology Today`;
+const TITLE = `${SITE.name} | Clarity out of complexity`;
 const DESCRIPTION =
-  "Software development and technology consulting. Wenosoft bridges the ability to build with the ability to think — delivering clarity out of complexity.";
+  "Software development and technology consulting. Wenosoft bridges the ability to think with the ability to build, delivering clarity out of complexity.";
 
 const CAPABILITIES = [
-  { title: "Software Development", body: "Web and mobile applications engineered for scale." },
-  { title: "AI Solutions", body: "Practical AI integrations that move real business metrics." },
-  { title: "Cloud & DevOps", body: "Resilient infrastructure, CI/CD, and platform engineering." },
-  { title: "Enterprise Automation", body: "Workflows and systems that remove manual friction." },
-  { title: "Data Analytics", body: "Pipelines and dashboards that turn data into decisions." },
-  { title: "IT Consultancy", body: "Strategy and architecture from a team that ships." },
+  {
+    title: "AI & Automation",
+    body: "Practical AI integrations and automated workflows. Less manual friction, more time for the decisions that need people.",
+  },
+  {
+    title: "Strategic Software Development",
+    body: "Web, mobile, and SaaS products engineered for scale. Built deliberately, so they hold up as your business grows.",
+  },
+  {
+    title: "Cloud & Data Intelligence",
+    body: "Resilient infrastructure and data pipelines. Dashboards that turn raw events into clear decisions.",
+  },
+  {
+    title: "IT Consultancy",
+    body: "Strategy, architecture, and technical due diligence. Advice from a team that ships.",
+  },
 ];
 
 export function HomePage() {
@@ -47,11 +57,11 @@ function Hero() {
         <div>
           <p className="text-caption text-soft-lavender">Wenosoft Technologies</p>
           <h1 className="mt-5 text-display text-foreground">
-            Experience the future of <span className="text-soft-lavender">technology</span> today.
+            Clarity out of <span className="text-soft-lavender">complexity</span>.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-soft-lavender">
-            Ready to build something that lasts? We deliver software and consulting from a team that
-            understands both the code and the business case behind it.
+            We build software with deliberate structure. Our team understands the code and the
+            business case behind it. You get systems that last.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <CTALink href={CONTACT.mailto} variant="primary" size="lg">
@@ -127,7 +137,7 @@ function CapabilitiesGrid() {
       title="Software that works. A partnership that thinks."
       intro="We pair engineering depth with strategic clarity. From first prototype to enterprise scale."
     >
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid gap-4 sm:grid-cols-2">
         {CAPABILITIES.map((c) => (
           <li
             key={c.title}
@@ -193,9 +203,7 @@ function ContactCTA() {
         <div aria-hidden className="absolute inset-0 bg-grid-pattern opacity-20" />
         <div className="relative">
           <p className="text-caption text-soft-lavender">Let&apos;s talk</p>
-          <h2 className="mt-4 text-heading text-foreground">
-            Ready to build something that lasts?
-          </h2>
+          <h2 className="mt-4 text-heading text-foreground">Build something that lasts.</h2>
           <p className="mx-auto mt-4 max-w-xl text-soft-lavender">
             Tell us about the problem. We&apos;ll bring the structure, the people, and the code.
           </p>
